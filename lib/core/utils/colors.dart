@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static const accent = Color(0xFFFFB930);
   static const scaffoldBackground = Colors.black;
+  static const text = Colors.white;
 }
 
 class MaterialColorMaps {
   static const Map<int, Color> accentMap = {
-    50: Color(0xffffb930),
-    100: Color(0xffffb930),
-    200: Color(0xffffb930),
-    300: Color(0xffffb930),
-    400: Color(0xffffb930),
-    500: Color(0xffffb930),
-    600: Color(0xffffb930),
-    700: Color(0xffffb930),
-    800: Color(0xffffb930),
-    900: Color(0xffffb930),
+    50: Color(0xFFFFB930),
+    100: Color(0xFFFFB930),
+    200: Color(0xFFFFB930),
+    300: Color(0xFFFFB930),
+    400: Color(0xFFFFB930),
+    500: Color(0xFFFFB930),
+    600: Color(0xFFFFB930),
+    700: Color(0xFFFFB930),
+    800: Color(0xFFFFB930),
+    900: Color(0xFFFFB930),
   };
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/views/widgets/artist_avatar.dart';
 import 'package:player_one/views/widgets/last_played_card.dart';
 
 class HomeActivity extends StatelessWidget {
@@ -13,6 +14,15 @@ class HomeActivity extends StatelessWidget {
       'title': 'Party hits',
       'subtitle': 'A mix of the biggest pop, dance, and hip hop...',
     }
+  ];
+
+  final List<int> indicesList = [
+    1,
+    2,
+    3,
+    1,
+    2,
+    3,
   ];
 
   HomeActivity({Key? key}) : super(key: key);
@@ -94,6 +104,49 @@ class HomeActivity extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               'Your favorite artists',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                height: 23 / 20,
+                color: AppColors.text,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 100 + screenSize.height / 25.1,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: (screenSize.height / 50.2),
+              ),
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) {
+                  return Padding(
+                    padding: (index == 0)
+                        ? const EdgeInsets.only(left: 20)
+                        : const EdgeInsets.only(left: 15),
+                    child: ArtistAvatar(
+                      imagePath:
+                          'assets/images/artiste${indicesList[index]}.png',
+                    ),
+                  );
+                },
+                separatorBuilder: (_, index) => const SizedBox(
+                  width: 15,
+                ),
+                itemCount: indicesList.length,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: screenSize.height / 19,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Text(
+              'Genres',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,

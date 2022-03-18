@@ -4,6 +4,8 @@ class AppColors {
   static const accent = Color(0xFFFFB930);
   static const scaffoldBackground = Colors.black;
   static const text = Colors.white;
+  static const subtitle = Color(0xFFD2D2D2);
+  static const cardBackground = Color(0x3223232D);
 }
 
 class MaterialColorMaps {
@@ -22,5 +24,8 @@ class MaterialColorMaps {
 }
 
 class MaterialAppColors {
-  static const MaterialColor accentMaterial = MaterialColor(0xFFFFB930, MaterialColorMaps.accentMap);
+  static const MaterialColor accentMaterial = MaterialColor(
+    0xFFFFB930,
+    MaterialColorMaps.accentMap,
+  );
 }

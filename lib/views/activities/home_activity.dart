@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/views/widgets/last_played_card.dart';
 
 class HomeActivity extends StatelessWidget {
-  const HomeActivity({Key? key}) : super(key: key);
+  final List<Map<String, String>> data = [
+    <String, String>{
+      'title': 'Discover Weekly',
+      'subtitle': 'Your weekly mixtape of fresh music. Enjoy',
+    },
+    <String, String>{
+      'title': 'Party hits',
+      'subtitle': 'A mix of the biggest pop, dance, and hip hop...',
+    }
+  ];
+
+  HomeActivity({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +49,57 @@ class HomeActivity extends StatelessWidget {
           ),
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (_, index) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20) + EdgeInsets.only(top: screenSize.height / 22),
-                child: const Text(
-                  'Last played',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.text,
-                    height: 23 / 20,
-                  ),
-                ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20) +
+                EdgeInsets.only(top: screenSize.height / 22),
+            child: const Text(
+              'Last played',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: AppColors.text,
+                height: 23 / 20,
               ),
-              childCount: 1,
+            ),
+          ),
+          SizedBox(
+            width: screenSize.width,
+            height: screenSize.height / 3.5,
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 20) +
+                  const EdgeInsets.only(top: 15),
+              itemBuilder: (_, index) {
+                int pathSuffixIndex = index + (index + (index + 1));
+                return LastPlayedCard(
+                  path1: 'assets/images/lastplayed$pathSuffixIndex.png',
+                  path2: 'assets/images/lastplayed${pathSuffixIndex + 1}.png',
+                  path3: 'assets/images/lastplayed${pathSuffixIndex + 2}.png',
+                  title: data[index]['title'],
+                  subtitle: data[index]['subtitle'],
+                );
+              },
+              separatorBuilder: (_, index) => const SizedBox(
+                width: 15,
+              ),
+              itemCount: 2,
+              scrollDirection: Axis.horizontal,
+            ),
+          ),
+          SizedBox(
+            height: screenSize.height / 19,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              'Your favorite artists',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                height: 23 / 20,
+                color: AppColors.text,
+              ),
             ),
           ),
         ],

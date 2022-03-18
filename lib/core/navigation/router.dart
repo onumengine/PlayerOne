@@ -7,7 +7,7 @@ class AppRouter {
     switch (settings.name) {
       case RouteNames.HOME:
         return MaterialPageRoute(
-          builder: (_) => const HomeActivity(),
+          builder: (_) => HomeActivity(),
         );
       default:
         return MaterialPageRoute(

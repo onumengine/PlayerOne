@@ -68,7 +68,7 @@ class LastPlayedCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 26, 12),
                   width: constraints.maxWidth,
-                  color: Colors.white.withOpacity(0.1),
+                  color: AppColors.text.withOpacity(0.1),
                   child: Column(
                     children: [
                       Expanded(

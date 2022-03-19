@@ -5,7 +5,12 @@ class AppColors {
   static const scaffoldBackground = Colors.black;
   static const text = Colors.white;
   static const subtitle = Color(0xFFD2D2D2);
+  static const subtitle2 = Color(0x50FFFFFF);
+  static const subtitle3 = Color(0xFFC9C9C9);
+  static const subtitle4 = Color(0x50FFFFFF);
+  static const subtitle5 = Color(0x50D2D2D2);
   static const cardBackground = Color(0x3223232D);
+  static const elevatedButtonBackground = Color(0xAFFFFFF);
 }
 
 class MaterialColorMaps {

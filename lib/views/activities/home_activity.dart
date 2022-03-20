@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/views/widgets/album_card.dart';
 import 'package:player_one/views/widgets/artist_avatar.dart';
 import 'package:player_one/views/widgets/genre_tile.dart';
 import 'package:player_one/views/widgets/last_played_card.dart';
@@ -33,6 +34,18 @@ class HomeActivity extends StatelessWidget {
     'Hip-hop',
     'Pop',
     'Classic',
+    'Spatial Audio',
+    'Pop',
+    'Reggae',
+    'Chill',
+    'Fitness',
+    'Feel Good',
+    'Party',
+    'Dance',
+    'Classical',
+    'Rock',
+    'Jazz',
+    'Alternative',
   ];
 
   final List<TrackModel> tracks = [
@@ -67,6 +80,15 @@ class HomeActivity extends StatelessWidget {
     'Chilled edm',
     '90s Happy Hits',
     'Hard Rock',
+  ];
+
+  final List<String> albums = [
+    'Teenage fever',
+    'Chvmeleon',
+    'Bella Buffet',
+    'From a Birds Eye View',
+    'The Marshall Mathers LP',
+    '4 Your Eyez Only',
   ];
 
   HomeActivity({Key? key}) : super(key: key);
@@ -185,27 +207,28 @@ class HomeActivity extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 375 + (screenSize.height / 25.1),
+            height: screenSize.height / 5,
             child: Padding(
               padding: EdgeInsets.only(
-                left: 20,
                 top: (screenSize.height / 50.2),
-                right: 20,
               ),
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 8 / 9,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 15,
-                children: List<GenreTile>.generate(
-                  4,
-                  (index) => GenreTile(
-                    genreNumber: index + 1,
-                  ),
+              child: ListView.separated(
+                padding: const EdgeInsets.only(left: 20),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) => GenreTile(
+                  genreNumber: index,
+                  numberOfTracks: 23046,
+                  genreName: genres[index],
+                  imagePath: 'assets/images/genre${index + 1}.png',
                 ),
+                separatorBuilder: (_, index) => const SizedBox(
+                  width: 15,
+                ),
+                itemCount: genres.length,
               ),
             ),
           ),
+          SizedBox(height: screenSize.height / 19,),
           Padding(
             padding: EdgeInsets.only(
               left: 20,
@@ -274,10 +297,13 @@ class HomeActivity extends StatelessWidget {
           SizedBox(
             height: screenSize.height / 4,
             child: ListView.separated(
+              padding: const EdgeInsets.only(left: 20),
               scrollDirection: Axis.horizontal,
               itemBuilder: (_, index) => PlaylistCard(
                 title: (index > 2) ? 'Unknown' : playlists[index],
-                imagePath: (index > 1) ? 'assets/images/playlist1.png' : 'assets/images/playlist${index + 1}.png',
+                imagePath: (index > 1)
+                    ? 'assets/images/playlist1.png'
+                    : 'assets/images/playlist${index + 1}.png',
               ),
               separatorBuilder: (_, index) => const SizedBox(
                 width: 15,
@@ -285,6 +311,44 @@ class HomeActivity extends StatelessWidget {
               itemCount: 6,
             ),
           ),
+          SizedBox(
+            height: screenSize.height / 19,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Albums',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    height: 28 / 24,
+                    color: AppColors.text,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: screenSize.height / 4,
+            child: ListView.separated(
+              padding: EdgeInsets.only(left: 20, top: screenSize.height / 50),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (_, index) => AlbumCard(
+                title: (index > 3) ? 'Unknown' : albums[index],
+                imagePath: (index > 1)
+                    ? 'assets/images/album1.png'
+                    : 'assets/images/album${index + 1}.png',
+              ),
+              separatorBuilder: (_, index) => const SizedBox(
+                width: 15,
+              ),
+              itemCount: 6,
+            ),
+          ),
+          SizedBox(height: screenSize.height / 8)
         ],
       ),
     );

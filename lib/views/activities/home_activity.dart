@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/utils/colors.dart';
 import 'package:player_one/views/widgets/album_card.dart';
 import 'package:player_one/views/widgets/artist_avatar.dart';
@@ -106,15 +107,19 @@ class HomeActivity extends StatelessWidget {
             color: AppColors.text,
             fontSize: 36,
             fontWeight: FontWeight.w900,
-            fontStyle: FontStyle.italic,
             height: 42 / 36,
           ),
-        ),
+           ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications_outlined,
+            onPressed: () {
+              Navigator.of(context).pushNamed(RouteNames.SEARCH);
+            },
+            icon: const Hero(
+              tag: 'search_icon',
+              child: Icon(
+                Icons.search,
+              ),
             ),
           ),
           IconButton(

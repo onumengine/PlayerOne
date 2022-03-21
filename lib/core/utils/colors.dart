@@ -11,6 +11,8 @@ class AppColors {
   static const subtitle5 = Color(0x50D2D2D2);
   static const cardBackground = Color(0x3223232D);
   static const elevatedButtonBackground = Color(0xAFFFFFF);
+  static const flatButtonText = Color(0xFFD5D5D5);
+  static const searchbarBackground = Color(0xFF191919);
 }
 
 class MaterialColorMaps {

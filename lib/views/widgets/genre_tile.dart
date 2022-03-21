@@ -21,6 +21,7 @@ class GenreTile extends StatelessWidget {
       child: SizedBox(
         width: screenSize.width / 2.34,
         child: Stack(
+          alignment: Alignment.bottomLeft,
           children: [
             Positioned.fill(
               child: Opacity(
@@ -32,7 +33,7 @@ class GenreTile extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 10,
+              bottom: 27,
               left: 10,
               child: Text(
                 genreName,
@@ -44,6 +45,28 @@ class GenreTile extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              bottom: 10,
+              left: 10,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.music_note,
+                    color: AppColors.text,
+                    size: 12,
+                  ),
+                  Text(
+                    '$numberOfTracks Tracks',
+                    style: const TextStyle(
+                      fontSize: 10,
+                      height: 14 / 12,
+                      color: AppColors.text,
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

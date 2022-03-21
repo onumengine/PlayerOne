@@ -323,15 +323,10 @@ class HomeActivity extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   'Albums',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    height: 28 / 24,
-                    color: AppColors.text,
-                  ),
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
             ),

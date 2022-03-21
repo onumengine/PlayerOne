@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/views/fragments/search_results.dart';
 import 'package:player_one/views/widgets/custom_chip.dart';
+import 'package:player_one/views/widgets/track_tile.dart';
 
 class SearchActivity extends StatelessWidget {
-  const SearchActivity({Key? key}) : super(key: key);
+  SearchActivity({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,50 +75,7 @@ class SearchActivity extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                left: 20,
-                top: 20,
-                bottom: screenSize.height / 19,
-              ),
-              height: 60,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  CustomChip(
-                    title: 'Tracks',
-                    onTap: (value) {
-                      print(value);
-                    },
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CustomChip(
-                    title: 'Albums',
-                    onTap: (value) {
-                      print(value);
-                    },
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  CustomChip(
-                    title: 'Playlists',
-                    onTap: (value) {
-                      print(value);
-                    },
-                  ),
-                ],
-              ),
-            ),
-
-          ],
-        ),
-      ),
+      body: SearchResultsFragment(),
     );
   }
 }

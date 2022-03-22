@@ -13,6 +13,13 @@ class AppColors {
   static const elevatedButtonBackground = Color(0xAFFFFFF);
   static const flatButtonText = Color(0xFFD5D5D5);
   static const searchbarBackground = Color(0xFF191919);
+
+  static const fullPink = Color(0xFFFF5B5B);
+  static const fullOrange = Color(0xFFE17000);
+  static const fullSkyBlue = Color(0xFF0074A9);
+  static const fullGreen = Color(0xFF038D00);
+  static const fullPurple = Color(0xFF7500CF);
+  static const fullDeepBlue = Color(0xFF002BB6);
 }
 
 class MaterialColorMaps {

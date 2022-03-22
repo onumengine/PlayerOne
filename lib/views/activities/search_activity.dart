@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:player_one/core/utils/colors.dart';
 import 'package:player_one/views/fragments/search_results.dart';
-import 'package:player_one/views/widgets/custom_chip.dart';
-import 'package:player_one/views/widgets/track_tile.dart';
+import 'package:player_one/views/fragments/search_suggestions.dart';
 
 class SearchActivity extends StatelessWidget {
   SearchActivity({Key? key}) : super(key: key);
@@ -75,7 +74,7 @@ class SearchActivity extends StatelessWidget {
           ),
         ),
       ),
-      body: SearchResultsFragment(),
+      body: SearchSuggestionsFragment(),
     );
   }
 }

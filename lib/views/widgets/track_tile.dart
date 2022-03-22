@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/utils/colors.dart';
 
 // TODO: use a hero to animate the first track tile into the TracksFragment when 'see all' is clicked
@@ -16,6 +17,9 @@ class TrackTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigator.of(context).pushNamed(RouteNames.NOW_PLAYING);
+      },
       leading: Image.asset(imagePath),
       title: Text(
         title,
@@ -64,6 +68,9 @@ class SearchTrackTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigator.of(context).pushNamed(RouteNames.NOW_PLAYING);
+      },
       contentPadding: EdgeInsets.zero,
       leading: Image.asset(imagePath),
       title: Text(

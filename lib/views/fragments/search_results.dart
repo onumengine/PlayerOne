@@ -30,27 +30,21 @@ class SearchResultsFragment extends StatelessWidget {
               children: [
                 CustomChip(
                   title: 'Tracks',
-                  onTap: (value) {
-                    print(value);
-                  },
+                  onTap: (value) {},
                 ),
                 const SizedBox(
                   width: 15,
                 ),
                 CustomChip(
                   title: 'Albums',
-                  onTap: (value) {
-                    print(value);
-                  },
+                  onTap: (value) {},
                 ),
                 const SizedBox(
                   width: 15,
                 ),
                 CustomChip(
                   title: 'Playlists',
-                  onTap: (value) {
-                    print(value);
-                  },
+                  onTap: (value) {},
                 ),
               ],
             ),

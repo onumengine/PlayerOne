@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/utils/params.dart';
+import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart';
+import 'package:player_one/service_locator.dart';
 import 'package:player_one/views/widgets/album_card.dart';
 import 'package:player_one/views/widgets/artist_avatar.dart';
 import 'package:player_one/views/widgets/genre_tile.dart';
@@ -9,7 +12,15 @@ import 'package:player_one/views/widgets/last_played_card.dart';
 import 'package:player_one/views/widgets/playlist_card.dart';
 import 'package:player_one/views/widgets/track_tile.dart';
 
-class HomeActivity extends StatelessWidget {
+class HomeActivity extends StatefulWidget {
+
+  HomeActivity({Key? key}) : super(key: key);
+
+  @override
+  State<HomeActivity> createState() => _HomeActivityState();
+}
+
+class _HomeActivityState extends State<HomeActivity> {
   final List<Map<String, String>> data = [
     <String, String>{
       'title': 'Discover Weekly',
@@ -92,11 +103,17 @@ class HomeActivity extends StatelessWidget {
     '4 Your Eyez Only',
   ];
 
-  HomeActivity({Key? key}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+    serviceLocator<GetTracks>()(NoParams());
+  }
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -109,7 +126,7 @@ class HomeActivity extends StatelessWidget {
             fontWeight: FontWeight.w900,
             height: 42 / 36,
           ),
-           ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -137,7 +154,10 @@ class HomeActivity extends StatelessWidget {
                 EdgeInsets.only(top: screenSize.height / 22),
             child: Text(
               'Last played',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
           ),
           SizedBox(
@@ -156,7 +176,8 @@ class HomeActivity extends StatelessWidget {
                   subtitle: data[index]['subtitle'],
                 );
               },
-              separatorBuilder: (_, index) => const SizedBox(
+              separatorBuilder: (_, index) =>
+              const SizedBox(
                 width: 15,
               ),
               itemCount: 2,
@@ -170,7 +191,10 @@ class HomeActivity extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               'Your favorite artists',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
           ),
           SizedBox(
@@ -188,11 +212,12 @@ class HomeActivity extends StatelessWidget {
                         : const EdgeInsets.only(left: 15),
                     child: ArtistAvatar(
                       imagePath:
-                          'assets/images/artiste${indicesList[index]}.png',
+                      'assets/images/artiste${indicesList[index]}.png',
                     ),
                   );
                 },
-                separatorBuilder: (_, index) => const SizedBox(
+                separatorBuilder: (_, index) =>
+                const SizedBox(
                   width: 15,
                 ),
                 itemCount: indicesList.length,
@@ -208,7 +233,10 @@ class HomeActivity extends StatelessWidget {
             ),
             child: Text(
               'Genres',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
           ),
           SizedBox(
@@ -220,13 +248,15 @@ class HomeActivity extends StatelessWidget {
               child: ListView.separated(
                 padding: const EdgeInsets.only(left: 20),
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (_, index) => GenreTile(
-                  genreNumber: index,
-                  numberOfTracks: 23046,
-                  genreName: genres[index],
-                  imagePath: 'assets/images/genre${index + 1}.png',
-                ),
-                separatorBuilder: (_, index) => const SizedBox(
+                itemBuilder: (_, index) =>
+                    GenreTile(
+                      genreNumber: index,
+                      numberOfTracks: 23046,
+                      genreName: genres[index],
+                      imagePath: 'assets/images/genre${index + 1}.png',
+                    ),
+                separatorBuilder: (_, index) =>
+                const SizedBox(
                   width: 15,
                 ),
                 itemCount: genres.length,
@@ -242,21 +272,25 @@ class HomeActivity extends StatelessWidget {
             ),
             child: Text(
               'Your Tracks',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
           ),
           Column(
             children: List<Padding>.generate(
               5,
-              (index) => Padding(
-                padding: EdgeInsets.only(bottom: screenSize.height / 38),
-                child: TrackTile(
-                  imagePath: 'assets/images/discover${index + 1}.png',
-                  title: tracks[index].artiste,
-                  subtitle: tracks[index].title,
-                  trackDuration: tracks[index].duration,
-                ),
-              ),
+                  (index) =>
+                  Padding(
+                    padding: EdgeInsets.only(bottom: screenSize.height / 38),
+                    child: TrackTile(
+                      imagePath: 'assets/images/discover${index + 1}.png',
+                      title: tracks[index].artiste,
+                      subtitle: tracks[index].title,
+                      trackDuration: tracks[index].duration,
+                    ),
+                  ),
             ),
           ),
           Padding(
@@ -266,7 +300,10 @@ class HomeActivity extends StatelessWidget {
               right: 20,
             ),
             child: ElevatedButton(
-              style: Theme.of(context).elevatedButtonTheme.style,
+              style: Theme
+                  .of(context)
+                  .elevatedButtonTheme
+                  .style,
               onPressed: () {
                 print('See all pressed');
               },
@@ -285,7 +322,10 @@ class HomeActivity extends StatelessWidget {
               children: [
                 Text(
                   'Playlists',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headlineMedium,
                 ),
                 const Text(
                   'See all',
@@ -304,13 +344,15 @@ class HomeActivity extends StatelessWidget {
             child: ListView.separated(
               padding: const EdgeInsets.only(left: 20),
               scrollDirection: Axis.horizontal,
-              itemBuilder: (_, index) => PlaylistCard(
-                title: (index > 2) ? 'Unknown' : playlists[index],
-                imagePath: (index > 1)
-                    ? 'assets/images/playlist1.png'
-                    : 'assets/images/playlist${index + 1}.png',
-              ),
-              separatorBuilder: (_, index) => const SizedBox(
+              itemBuilder: (_, index) =>
+                  PlaylistCard(
+                    title: (index > 2) ? 'Unknown' : playlists[index],
+                    imagePath: (index > 1)
+                        ? 'assets/images/playlist1.png'
+                        : 'assets/images/playlist${index + 1}.png',
+                  ),
+              separatorBuilder: (_, index) =>
+              const SizedBox(
                 width: 15,
               ),
               itemCount: 6,
@@ -326,7 +368,10 @@ class HomeActivity extends StatelessWidget {
               children: [
                 Text(
                   'Albums',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headlineMedium,
                 ),
               ],
             ),
@@ -336,13 +381,15 @@ class HomeActivity extends StatelessWidget {
             child: ListView.separated(
               padding: EdgeInsets.only(left: 20, top: screenSize.height / 50),
               scrollDirection: Axis.horizontal,
-              itemBuilder: (_, index) => AlbumCard(
-                title: (index > 3) ? 'Unknown' : albums[index],
-                imagePath: (index > 1)
-                    ? 'assets/images/album1.png'
-                    : 'assets/images/album${index + 1}.png',
-              ),
-              separatorBuilder: (_, index) => const SizedBox(
+              itemBuilder: (_, index) =>
+                  AlbumCard(
+                    title: (index > 3) ? 'Unknown' : albums[index],
+                    imagePath: (index > 1)
+                        ? 'assets/images/album1.png'
+                        : 'assets/images/album${index + 1}.png',
+                  ),
+              separatorBuilder: (_, index) =>
+              const SizedBox(
                 width: 15,
               ),
               itemCount: 6,

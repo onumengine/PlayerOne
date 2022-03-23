@@ -3,8 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/navigation/router.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/service_locator.dart' as service_locator;
 
 void main() {
+  service_locator.init();
   runApp(const MyApp());
 }
 

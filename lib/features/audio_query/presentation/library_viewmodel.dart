@@ -19,9 +19,11 @@ class LibraryViewModel extends ChangeNotifier {
   refreshLibrary() async {
     final result = await getTracks(NoParams());
     result.fold((failure) {
+      _state = LibraryState.unableToFetch;
       print(failure.message);
     }, (tracks) {
       _tracks = tracks;
+      _state = LibraryState.fetched;
       notifyListeners();
     });
   }
@@ -31,5 +33,5 @@ enum LibraryState {
   unfetched,
   fetching,
   fetched,
-  unableToPopulate,
+  unableToFetch,
 }

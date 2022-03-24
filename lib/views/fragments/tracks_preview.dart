@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/features/audio_query/presentation/library_viewmodel.dart';
 import 'package:player_one/views/widgets/track_tile.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class TracksPreviewFragment extends StatelessWidget {
                   child: ElevatedButton(
                     style: Theme.of(context).elevatedButtonTheme.style,
                     onPressed: () {
-                      print('See all pressed');
+                      Navigator.of(context).pushNamed(RouteNames.TRACKS);
                     },
                     child: SizedBox(
                       width: screenSize.width,
@@ -63,7 +64,7 @@ class TracksPreviewFragment extends StatelessWidget {
                   child: ElevatedButton(
                     style: Theme.of(context).elevatedButtonTheme.style,
                     onPressed: () {
-                      print('See all pressed');
+                      Navigator.of(context).pushNamed(RouteNames.TRACKS);
                     },
                     child: const Text('See all'),
                   ),

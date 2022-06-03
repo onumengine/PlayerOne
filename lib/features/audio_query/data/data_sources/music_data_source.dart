@@ -13,9 +13,19 @@ class DeviceContentProvider implements LocalMusicDataSource {
   @override
   Future<List<TrackModel>> fetchSongs() async {
     final response = await flutterAudioQuery.getSongs();
-    final trackList = response
+    print('SONGS RESPONSE IN FLUTTER AUDIO QUERY IS: $response');
+    print('SONGS RESPONSE LENGTH: ${response.length}');
+    final musicList = _filterAndReturnOnlyMusic(response);
+    print('MUSIC LIST AFTER FILTERING IS: $musicList');
+    print('MUSIC LIST LENGTH: ${musicList.length}');
+    final trackList = musicList
         .map<TrackModel>((songInfo) => TrackModel.fromSongInfo(songInfo))
         .toList();
     return trackList;
+  }
+
+  List<SongInfo> _filterAndReturnOnlyMusic(List<SongInfo> allAudio) {
+    final music = allAudio.takeWhile((audio) => audio.isMusic).toList();
+    return music;
   }
 }

@@ -49,9 +49,7 @@ class TracksActivity extends StatelessWidget {
                 : (viewModel.state == LibraryState.fetched)
                     ? ListView.builder(
                         itemBuilder: (_, index) => TrackTile(
-                          title: viewModel.tracks[index].title,
-                          subtitle: viewModel.tracks[index].artist,
-                          trackDuration: '5:30',
+                          track: viewModel.tracks[index],
                         ),
                         itemCount: viewModel.tracks.length,
                       )

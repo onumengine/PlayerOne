@@ -1,28 +1,38 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/features/audio_query/domain/entities/track.dart';
 
-// TODO: use a hero to animate the first track tile into the TracksFragment when 'see all' is clicked
 class TrackTile extends StatelessWidget {
-  final String imagePath, title, subtitle, trackDuration;
+  final TrackEntity track;
 
   const TrackTile({
     Key? key,
-    this.title = 'Unknown',
-    this.subtitle = 'Unknown',
-    this.imagePath = 'assets/images/discover1.png',
-    this.trackDuration = 'title',
+    required this.track,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double vw = MediaQuery.of(context).size.width;
     return ListTile(
       onTap: () {
         Navigator.of(context).pushNamed(RouteNames.NOW_PLAYING);
       },
-      leading: Image.asset(imagePath),
+      leading: track.albumArtPath == null
+          ? Image.asset(
+              'assets/images/playlist1.png',
+              width: 0.15 * vw,
+              fit: BoxFit.cover,
+            )
+          : Image.file(
+              File(track.albumArtPath),
+              width: 0.15 * vw,
+              fit: BoxFit.cover,
+            ),
       title: Text(
-        title,
+        track.title,
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
@@ -33,7 +43,7 @@ class TrackTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
-        subtitle,
+        track.artist,
         style: const TextStyle(
           height: 16 / 14,
           color: AppColors.subtitle3,
@@ -42,7 +52,7 @@ class TrackTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Text(
-        trackDuration,
+        track.duration,
         style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w500,

@@ -19,10 +19,7 @@ class TracksPreviewFragment extends StatelessWidget {
                   (index) => Padding(
                     padding: EdgeInsets.only(bottom: screenSize.height / 38),
                     child: TrackTile(
-                      imagePath: 'assets/images/discover${index + 1}.png',
-                      title: viewModel.tracks[index].artist,
-                      subtitle: viewModel.tracks[index].title,
-                      trackDuration: '5:32',
+                      track: viewModel.tracks[index],
                     ),
                   ),
                 ),

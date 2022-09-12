@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart';
 import 'package:player_one/features/audio_query/presentation/library_vm.dart';
+import 'package:player_one/features/playback/domain/use_cases/playback.dart';
+import 'package:player_one/features/playback/presentation/playback_vm.dart';
 import 'package:player_one/service_locator.dart';
 import 'package:player_one/views/activities/home_activity.dart';
 import 'package:player_one/views/activities/now_playing_activity.dart';
@@ -26,10 +28,19 @@ class AppRouter {
         );
       case RouteNames.TRACKS:
         return MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (_) => LibraryViewModel(
-              getTracks: serviceLocator<GetTracks>(),
-            ),
+          builder: (_) => MultiProvider(
+            providers: [
+              ChangeNotifierProvider.value(
+                value: LibraryViewModel(
+                  getTracks: serviceLocator<GetTracks>(),
+                ),
+              ),
+              ChangeNotifierProvider.value(
+                value: PlaybackViewModel(
+                  player: serviceLocator<Playback>(),
+                ),
+              ),
+            ],
             child: const TracksActivity(),
           ),
         );

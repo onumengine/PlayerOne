@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:player_one/core/utils/mock_data.dart';
 import 'package:player_one/features/playback/domain/use_cases/play.dart';
 import 'package:player_one/features/playback/domain/use_cases/playback.dart';
 
@@ -13,12 +14,13 @@ enum RepeatMode {
 class PlaybackViewModel with ChangeNotifier {
   final Playback player;
 
-  late String _title;
-  late String _artist;
+  String _title = nowPlayingState['title'];
+  String _artist = nowPlayingState['artist'];
   late Duration _duration;
-  late double _progress;
+  double _progress = nowPlayingState['progressPercent'];
   late bool _shuffle;
   late RepeatMode _repeatMode;
+  String _albumArt = nowPlayingState['albumArt'];
 
   String get title => _title;
   String get artist => _artist;
@@ -26,6 +28,7 @@ class PlaybackViewModel with ChangeNotifier {
   double get progress => _progress;
   bool get shuffle => _shuffle;
   RepeatMode get repeatMode => _repeatMode;
+  String get albumArt => _albumArt;
 
   setTitle(String newTitle) {
     _title = newTitle;
@@ -57,11 +60,16 @@ class PlaybackViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  setAlbumArt(String filePath) {
+    _albumArt = filePath;
+    notifyListeners();
+  }
+
   PlaybackViewModel({required this.player});
 
-  play() {
+  play(String filePath) {
     player.play(
-      PlayParams(filePath: 'filePath'),
+      PlayParams(filePath: filePath),
     );
   }
 

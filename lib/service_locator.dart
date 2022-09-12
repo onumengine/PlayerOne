@@ -6,6 +6,10 @@ import 'package:player_one/features/audio_query/data/repositories/tracks_reposit
 import 'package:player_one/features/audio_query/domain/repositories/tracks_repository.dart';
 import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart';
 import 'package:player_one/features/playback/data/data_sources/player.dart';
+import 'package:player_one/features/playback/data/repositories/playback_repository.dart';
+import 'package:player_one/features/playback/domain/repositories/player_repository.dart';
+import 'package:player_one/features/playback/domain/use_cases/play.dart';
+import 'package:player_one/features/playback/domain/use_cases/playback.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -33,9 +37,24 @@ initFeatures() {
       musicContentProvider: serviceLocator(),
     ),
   );
+  serviceLocator.registerLazySingleton<PlayerRepository>(
+    () => PlaybackRepository(
+      dataSource: serviceLocator(),
+    ),
+  );
   serviceLocator.registerLazySingleton<GetTracks>(
     () => GetTracks(
       tracksRepository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<Playback>(
+    () => Playback(
+      play: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<Play>(
+    () => Play(
+      playerRepository: serviceLocator(),
     ),
   );
 }

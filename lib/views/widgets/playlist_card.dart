@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 
 class PlaylistCard extends StatelessWidget {
   final String? imagePath, title;

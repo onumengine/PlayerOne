@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 import 'package:player_one/views/fragments/search_results.dart';
 import 'package:player_one/views/fragments/search_suggestions.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 import 'package:player_one/views/widgets/category_tile.dart';
 import 'package:player_one/views/widgets/top_genre_tile.dart';
 

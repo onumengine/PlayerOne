@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 
 enum RepeatMode {
   off,
@@ -110,7 +110,9 @@ class _NowPlayingControlPanelState extends State<NowPlayingControlPanel> {
                     });
                   },
                   child: Icon(
-                    _isPaused ? CupertinoIcons.play_fill : CupertinoIcons.pause_fill,
+                    _isPaused
+                        ? CupertinoIcons.play_fill
+                        : CupertinoIcons.pause_fill,
                     color: AppColors.text,
                   ),
                   color:

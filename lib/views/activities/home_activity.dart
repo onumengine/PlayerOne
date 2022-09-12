@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/navigation/routenames.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
+import 'package:player_one/core/utils/mock_data.dart';
 import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart';
-import 'package:player_one/features/audio_query/presentation/library_viewmodel.dart';
+import 'package:player_one/features/audio_query/presentation/library_vm.dart';
 import 'package:player_one/service_locator.dart';
 import 'package:player_one/views/fragments/tracks_preview.dart';
 import 'package:player_one/views/widgets/album_card.dart';
@@ -11,93 +12,10 @@ import 'package:player_one/views/widgets/artist_avatar.dart';
 import 'package:player_one/views/widgets/genre_tile.dart';
 import 'package:player_one/views/widgets/last_played_card.dart';
 import 'package:player_one/views/widgets/playlist_card.dart';
-import 'package:player_one/views/widgets/track_tile.dart';
 import 'package:provider/provider.dart';
 
 class HomeActivity extends StatelessWidget {
-  final List<Map<String, String>> data = [
-    <String, String>{
-      'title': 'Discover Weekly',
-      'subtitle': 'Your weekly mixtape of fresh music. Enjoy',
-    },
-    <String, String>{
-      'title': 'Party hits',
-      'subtitle': 'A mix of the biggest pop, dance, and hip hop...',
-    }
-  ];
-
-  final List<int> indicesList = [
-    1,
-    2,
-    3,
-    1,
-    2,
-    3,
-  ];
-
-  final List<String> genres = [
-    'Hard Rock',
-    'Hip-hop',
-    'Pop',
-    'Classic',
-    'Spatial Audio',
-    'Pop',
-    'Reggae',
-    'Chill',
-    'Fitness',
-    'Feel Good',
-    'Party',
-    'Dance',
-    'Classical',
-    'Rock',
-    'Jazz',
-    'Alternative',
-  ];
-
-  final List<TrackModel> tracks = [
-    TrackModel(
-      title: 'Chop Suey!',
-      artiste: 'System Of A Down',
-      duration: '5:32',
-    ),
-    TrackModel(
-      title: 'Gangsta\'s Paradise',
-      artiste: 'Coolio',
-      duration: '3:21',
-    ),
-    TrackModel(
-      title: 'Slow dancing in the dark',
-      artiste: 'Joji',
-      duration: '3:20',
-    ),
-    TrackModel(
-      title: 'Eye Of The Tiger',
-      artiste: 'Survivor',
-      duration: '4:21',
-    ),
-    TrackModel(
-      title: 'Beat it',
-      artiste: 'Michael Jackson',
-      duration: '5:32',
-    ),
-  ];
-
-  final List<String> playlists = [
-    'Chilled edm',
-    '90s Happy Hits',
-    'Hard Rock',
-  ];
-
-  final List<String> albums = [
-    'Teenage fever',
-    'Chvmeleon',
-    'Bella Buffet',
-    'From a Birds Eye View',
-    'The Marshall Mathers LP',
-    '4 Your Eyez Only',
-  ];
-
-  HomeActivity({Key? key}) : super(key: key);
+  const HomeActivity({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +32,7 @@ class HomeActivity extends StatelessWidget {
             fontWeight: FontWeight.w900,
             height: 42 / 36,
           ),
-           ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -157,8 +75,8 @@ class HomeActivity extends StatelessWidget {
                   path1: 'assets/images/lastplayed$pathSuffixIndex.png',
                   path2: 'assets/images/lastplayed${pathSuffixIndex + 1}.png',
                   path3: 'assets/images/lastplayed${pathSuffixIndex + 2}.png',
-                  title: data[index]['title'],
-                  subtitle: data[index]['subtitle'],
+                  title: lastPlayed[index]['title'],
+                  subtitle: lastPlayed[index]['subtitle'],
                 );
               },
               separatorBuilder: (_, index) => const SizedBox(
@@ -238,7 +156,9 @@ class HomeActivity extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: screenSize.height / 19,),
+          SizedBox(
+            height: screenSize.height / 19,
+          ),
           Padding(
             padding: EdgeInsets.only(
               left: 20,

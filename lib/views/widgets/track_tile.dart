@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:player_one/core/navigation/routenames.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 import 'package:player_one/features/audio_query/domain/entities/track.dart';
 
 class TrackTile extends StatelessWidget {
@@ -17,8 +18,11 @@ class TrackTile extends StatelessWidget {
   Widget build(BuildContext context) {
     double vw = MediaQuery.of(context).size.width;
     return ListTile(
-      onTap: () {
+      onTap: () async {
         Navigator.of(context).pushNamed(RouteNames.NOW_PLAYING);
+        final player = AudioPlayer();
+        var duration = await player.setFilePath(track.filePath);
+        print('THE DURATION OF THE SELECTED SONG IS : $duration');
       },
       leading: track.albumArtPath == null
           ? Image.asset(

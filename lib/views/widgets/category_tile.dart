@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 
 class CategoryTile extends StatelessWidget {
   final String title, imagePath;
@@ -45,7 +45,10 @@ class CategoryTile extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: Image.asset(imagePath, fit: BoxFit.fill,),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.fill,
+            ),
           ),
         ],
       ),

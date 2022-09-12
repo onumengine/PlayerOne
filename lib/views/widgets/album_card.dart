@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 
 class AlbumCard extends StatelessWidget {
   final String? imagePath, title, numberOfTracks;
@@ -52,11 +52,10 @@ class AlbumCard extends StatelessWidget {
                     Text(
                       '${numberOfTracks ?? 0} Tracks',
                       style: const TextStyle(
-                        fontSize: 12,
-                        height: 14 / 12,
-                        color: AppColors.text,
-                        overflow: TextOverflow.ellipsis
-                      ),
+                          fontSize: 12,
+                          height: 14 / 12,
+                          color: AppColors.text,
+                          overflow: TextOverflow.ellipsis),
                     ),
                   ],
                 ),

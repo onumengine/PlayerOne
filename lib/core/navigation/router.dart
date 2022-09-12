@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart';
-import 'package:player_one/features/audio_query/presentation/library_viewmodel.dart';
+import 'package:player_one/features/audio_query/presentation/library_vm.dart';
 import 'package:player_one/service_locator.dart';
 import 'package:player_one/views/activities/home_activity.dart';
 import 'package:player_one/views/activities/now_playing_activity.dart';

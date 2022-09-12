@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:player_one/core/utils/colors.dart';
+import 'package:player_one/core/theming/colors.dart';
 
 enum ChipState {
   active,
@@ -39,9 +39,7 @@ class _CustomChipState extends State<CustomChip> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(widget.borderRadius),
-          color: _isActive
-              ? AppColors.accent
-              : AppColors.searchbarBackground,
+          color: _isActive ? AppColors.accent : AppColors.searchbarBackground,
         ),
         padding: const EdgeInsets.symmetric(
           vertical: 10,
@@ -53,9 +51,8 @@ class _CustomChipState extends State<CustomChip> {
               TextStyle(
                 fontSize: 12,
                 height: 16 / 12,
-                color: _isActive
-                    ? AppColors.scaffoldBackground
-                    : AppColors.text,
+                color:
+                    _isActive ? AppColors.scaffoldBackground : AppColors.text,
               ),
         ),
       ),

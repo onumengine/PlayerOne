@@ -4,4 +4,4 @@
 ///
 /// TODO: Find a way to tie music queries to android lifecycle callbacks so that the app will fetch music when the orientation changes and stuff
 ///
-/// TODO:
+/// TODO: Create a new audio source with a concatenating playlist

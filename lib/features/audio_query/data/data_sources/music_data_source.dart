@@ -15,10 +15,10 @@ class DeviceContentProvider implements LocalMusicDataSource {
     final response = await flutterAudioQuery.getSongs();
     print('SONGS RESPONSE IN FLUTTER AUDIO QUERY IS: $response');
     print('SONGS RESPONSE LENGTH: ${response.length}');
-    final musicList = _filterAndReturnOnlyMusic(response);
-    print('MUSIC LIST AFTER FILTERING IS: $musicList');
-    print('MUSIC LIST LENGTH: ${musicList.length}');
-    final trackList = musicList
+    // final musicList = _filterAndReturnOnlyMusic(response);
+    // print('MUSIC LIST AFTER FILTERING IS: $musicList');
+    // print('MUSIC LIST LENGTH: ${musicList.length}');
+    final trackList = response
         .map<TrackModel>((songInfo) => TrackModel.fromSongInfo(songInfo))
         .toList();
     return trackList;

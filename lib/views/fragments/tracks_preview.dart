@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:player_one/core/navigation/routenames.dart';
-import 'package:player_one/features/audio_query/presentation/library_viewmodel.dart';
+import 'package:player_one/features/audio_query/presentation/library_vm.dart';
 import 'package:player_one/views/widgets/track_tile.dart';
 import 'package:provider/provider.dart';
 

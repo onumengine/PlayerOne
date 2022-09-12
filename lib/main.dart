@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Player One',
       debugShowCheckedModeBanner: false,
       theme: theme,
-      initialRoute: RouteNames.HOME,
+      initialRoute: RouteNames.TRACKS,
       onGenerateRoute: (settings) => AppRouter().generateRoute(settings),
     );
   }

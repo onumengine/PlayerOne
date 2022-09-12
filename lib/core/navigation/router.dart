@@ -14,7 +14,7 @@ class AppRouter {
     switch (settings.name) {
       case RouteNames.HOME:
         return MaterialPageRoute(
-          builder: (_) => HomeActivity(),
+          builder: (_) => const HomeActivity(),
         );
       case RouteNames.NOW_PLAYING:
         return MaterialPageRoute(

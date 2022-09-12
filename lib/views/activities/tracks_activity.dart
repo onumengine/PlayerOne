@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/theming/colors.dart';
 import 'package:player_one/features/audio_query/presentation/library_vm.dart';
@@ -16,8 +17,13 @@ class TracksActivity extends StatelessWidget {
           automaticallyImplyLeading: false,
           foregroundColor: AppColors.text,
           title: Text(
-            'Tracks',
-            style: Theme.of(context).textTheme.headlineMedium,
+            'Music',
+            style: GoogleFonts.roboto(
+              color: AppColors.text,
+              fontSize: 36,
+              fontWeight: FontWeight.w900,
+              height: 42 / 36,
+            ),
           ),
           actions: [
             IconButton(

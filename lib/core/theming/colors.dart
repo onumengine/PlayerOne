@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const accent = Color(0xFFFFB930);
   static const activeToolbarIcon = Color(0xFFFFB320);
-  static const cardBackground = Color(0x3223232D);
-  static const elevatedButtonBackground = Color(0xAFFFFFF);
+  static const cardBackground = Color(0xFF23232D);
+  static const elevatedButtonBackground = Color(0x0AFFFFFF);
   static const flatButtonText = Color(0xFFD5D5D5);
   static const pauseButton = Color(0xFFFFAE00);
   static const progressIndicatorBackground = Color(0xFFC4C4C4);

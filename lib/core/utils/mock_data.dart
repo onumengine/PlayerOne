@@ -79,3 +79,11 @@ final List<String> albums = [
   'The Marshall Mathers LP',
   '4 Your Eyez Only',
 ];
+
+final Map<String, dynamic> nowPlayingState = {
+  'durationSeconds': 147,
+  'progressPercent': 0.5,
+  'title': 'Joha',
+  'artist': 'Asake',
+  'albumArt': 'assets/images/album1.png',
+};

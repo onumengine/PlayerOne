@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:player_one/core/theming/colors.dart';
-import 'package:player_one/core/utils/mock_data.dart';
 import 'package:player_one/features/playback/presentation/playback_vm.dart';
 import 'package:provider/provider.dart';
 

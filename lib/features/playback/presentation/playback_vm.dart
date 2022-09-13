@@ -15,6 +15,8 @@ enum RepeatMode {
 class PlaybackViewModel with ChangeNotifier {
   final Playback player;
 
+  bool _trackIsLoaded = false;
+
   String _title = nowPlayingState['title'];
   String _artist = nowPlayingState['artist'];
   late Duration _duration;
@@ -24,6 +26,8 @@ class PlaybackViewModel with ChangeNotifier {
   String _albumArt = nowPlayingState['albumArt'];
   bool _isPlaying = false;
 
+  bool get trackIsLoaded => _trackIsLoaded;
+
   String get title => _title;
   String get artist => _artist;
   Duration get duration => _duration;
@@ -32,6 +36,11 @@ class PlaybackViewModel with ChangeNotifier {
   RepeatMode get repeatMode => _repeatMode;
   String get albumArt => _albumArt;
   bool get isPlaying => _isPlaying;
+
+  setTrackIsLoaded(bool value) {
+    _trackIsLoaded = value;
+    notifyListeners();
+  }
 
   setTitle(String newTitle) {
     _title = newTitle;
@@ -79,6 +88,14 @@ class PlaybackViewModel with ChangeNotifier {
     player.play(
       PlayParams(filePath: filePath),
     );
+  }
+
+  pause() {
+    player.pause(NoParams());
+  }
+
+  resume() {
+    player.resume(NoParams());
   }
 
   stop() {

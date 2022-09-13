@@ -19,3 +19,12 @@ class PlaybackFailure extends Failure {
   @override
   String get message => _description;
 }
+
+class CachingFailure extends Failure {
+  final String _description;
+
+  CachingFailure({description}) : _description = description;
+
+  @override
+  String get message => _description;
+}

@@ -8,8 +8,12 @@ import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart
 import 'package:player_one/features/playback/data/data_sources/player.dart';
 import 'package:player_one/features/playback/data/repositories/playback_repository.dart';
 import 'package:player_one/features/playback/domain/repositories/player_repository.dart';
+import 'package:player_one/features/playback/domain/use_cases/pause.dart';
 import 'package:player_one/features/playback/domain/use_cases/play.dart';
 import 'package:player_one/features/playback/domain/use_cases/playback.dart';
+import 'package:player_one/features/playback/domain/use_cases/resume.dart';
+import 'package:player_one/features/playback/domain/use_cases/seek.dart';
+import 'package:player_one/features/playback/domain/use_cases/stop.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -47,14 +51,38 @@ initFeatures() {
       tracksRepository: serviceLocator(),
     ),
   );
-  serviceLocator.registerLazySingleton<Playback>(
-    () => Playback(
-      play: serviceLocator(),
+  serviceLocator.registerLazySingleton<Pause>(
+    () => Pause(
+      playerRepository: serviceLocator(),
     ),
   );
   serviceLocator.registerLazySingleton<Play>(
     () => Play(
       playerRepository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<Resume>(
+    () => Resume(
+      playerRepository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<Seek>(
+    () => Seek(
+      playerRepository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<Stop>(
+    () => Stop(
+      playerRepository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<Playback>(
+    () => Playback(
+      pause: serviceLocator(),
+      play: serviceLocator(),
+      resume: serviceLocator(),
+      seek: serviceLocator(),
+      stop: serviceLocator(),
     ),
   );
 }

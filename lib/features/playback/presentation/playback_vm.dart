@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:player_one/core/utils/mock_data.dart';
+import 'package:player_one/core/utils/params.dart';
 import 'package:player_one/features/playback/domain/use_cases/play.dart';
 import 'package:player_one/features/playback/domain/use_cases/playback.dart';
 
@@ -21,6 +22,7 @@ class PlaybackViewModel with ChangeNotifier {
   late bool _shuffle;
   late RepeatMode _repeatMode;
   String _albumArt = nowPlayingState['albumArt'];
+  bool _isPlaying = false;
 
   String get title => _title;
   String get artist => _artist;
@@ -29,6 +31,7 @@ class PlaybackViewModel with ChangeNotifier {
   bool get shuffle => _shuffle;
   RepeatMode get repeatMode => _repeatMode;
   String get albumArt => _albumArt;
+  bool get isPlaying => _isPlaying;
 
   setTitle(String newTitle) {
     _title = newTitle;
@@ -65,12 +68,21 @@ class PlaybackViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  setIsPlaying(bool value) {
+    _isPlaying = value;
+    notifyListeners();
+  }
+
   PlaybackViewModel({required this.player});
 
   play(String filePath) {
     player.play(
       PlayParams(filePath: filePath),
     );
+  }
+
+  stop() {
+    player.stop(NoParams());
   }
 
   String _serializeState() {

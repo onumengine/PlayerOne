@@ -90,11 +90,15 @@ class NowPlayingTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           IconButton(
-                            onPressed: () {
-                              print('pressed button');
-                            },
-                            icon: const Icon(
-                              CupertinoIcons.pause_fill,
+                            onPressed: viewmodel.isPlaying
+                                ? viewmodel.stop
+                                : () {
+                                    viewmodel.stop();
+                                  },
+                            icon: Icon(
+                              viewmodel.isPlaying
+                                  ? CupertinoIcons.pause_fill
+                                  : CupertinoIcons.play_arrow_solid,
                               color: AppColors.text,
                             ),
                           ),

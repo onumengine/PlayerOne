@@ -1,4 +1,7 @@
+import 'package:dartz/dartz.dart';
+import 'package:player_one/core/error/failure.dart';
 import 'package:player_one/features/playback/data/data_sources/player.dart';
+import 'package:player_one/features/playback/data/models/playing_track.dart';
 import 'package:player_one/features/playback/domain/repositories/player_repository.dart';
 
 class PlaybackRepository implements PlayerRepository {
@@ -9,7 +12,7 @@ class PlaybackRepository implements PlayerRepository {
   @override
   Future next() async {
     // TODO: implement next
-    await dataSource.pause();
+    throw UnimplementedError();
   }
 
   @override
@@ -18,14 +21,25 @@ class PlaybackRepository implements PlayerRepository {
   }
 
   @override
-  Future play(String filePath) async {
-    await dataSource.play(filePath);
+  Future<Either<PlaybackFailure, PlayingTrackModel>> play(
+      String filePath) async {
+    try {
+      var duration = await dataSource.play(filePath);
+      return Right(PlayingTrackModel.fromJSON(filePath, duration));
+    } on Exception catch (e) {
+      return Left(PlaybackFailure(description: e.toString()));
+    }
   }
 
   @override
   Future previous() {
     // TODO: implement previous
     throw UnimplementedError();
+  }
+
+  @override
+  Future resume() async {
+    await dataSource.resume();
   }
 
   @override

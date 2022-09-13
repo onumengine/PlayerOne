@@ -5,6 +5,8 @@ abstract class PlaybackDataSource {
 
   Future pause();
 
+  Future resume();
+
   Future seek(int duration);
 
   Future stop();
@@ -22,6 +24,13 @@ class Player implements PlaybackDataSource {
 
   @override
   Future play(String filePath) async {
+    final duration = await audioPlayer
+        .setUrl(filePath); // Play without waiting for completion
+    await audioPlayer.play();
+  }
+
+  @override
+  Future resume() async {
     await audioPlayer.play();
   }
 

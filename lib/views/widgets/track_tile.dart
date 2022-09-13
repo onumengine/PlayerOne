@@ -5,6 +5,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/theming/colors.dart';
 import 'package:player_one/features/audio_query/domain/entities/track.dart';
+import 'package:player_one/features/playback/presentation/playback_vm.dart';
+import 'package:provider/provider.dart';
 
 class TrackTile extends StatelessWidget {
   final TrackEntity track;
@@ -19,10 +21,14 @@ class TrackTile extends StatelessWidget {
     double vw = MediaQuery.of(context).size.width;
     return ListTile(
       onTap: () async {
-        Navigator.of(context).pushNamed(RouteNames.NOW_PLAYING);
-        final player = AudioPlayer();
-        var duration = await player.setFilePath(track.filePath);
-        print('THE DURATION OF THE SELECTED SONG IS : $duration');
+        Provider.of<PlaybackViewModel>(context, listen: false)
+          ..play(track.filePath)
+          ..setIsPlaying(true);
+      },
+      onLongPress: () async {
+        Provider.of<PlaybackViewModel>(context, listen: false)
+          ..stop()
+          ..setIsPlaying(false);
       },
       leading: track.albumArtPath == null
           ? Image.asset(

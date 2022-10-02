@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:player_one/core/theming/colors.dart';
@@ -10,13 +12,20 @@ class NowPlayingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    return PreferredSize(
-      preferredSize: Size.fromHeight(screenSize.height * 0.08),
-      child: Consumer<PlaybackViewModel>(
-        builder: (context, viewmodel, child) {
-          return Container(
+    return Consumer<PlaybackViewModel>(
+      builder: (context, viewmodel, child) {
+        if (!viewmodel.trackIsLoaded) {
+          return const PreferredSize(
+            child: SizedBox(
+              height: 0,
+            ),
+            preferredSize: Size.zero,
+          );
+        }
+        return PreferredSize(
+          preferredSize: Size.fromHeight(screenSize.height * 0.08),
+          child: Container(
             decoration: const BoxDecoration(
-              //color: Theme.of(context).scaffoldBackgroundColor,
               color: AppColors.cardBackground,
             ),
             height: screenSize.height * 0.08,
@@ -39,11 +48,15 @@ class NowPlayingTile extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Image.asset(
-                              viewmodel.albumArt,
-                              height: screenSize.height * 0.05,
-                              fit: BoxFit.cover,
-                            ),
+                            viewmodel.currentlyPlayingTrack?.albumArtPath ==
+                                    null
+                                ? Image.asset('assets/images/playlist1.png')
+                                : Image.file(
+                                    File(viewmodel
+                                        .currentlyPlayingTrack!.albumArtPath),
+                                    height: screenSize.height * 0.05,
+                                    fit: BoxFit.cover,
+                                  ),
                             Container(
                               padding: const EdgeInsets.only(left: 8),
                               child: Column(
@@ -57,7 +70,7 @@ class NowPlayingTile extends StatelessWidget {
                                       top: screenSize.height * 0.001,
                                     ),
                                     child: Text(
-                                      viewmodel.title,
+                                      viewmodel.currentlyPlayingTrack!.title,
                                       style: const TextStyle(
                                         color: AppColors.text,
                                       ),
@@ -71,7 +84,7 @@ class NowPlayingTile extends StatelessWidget {
                                       bottom: screenSize.height * 0.003,
                                     ),
                                     child: Text(
-                                      viewmodel.artist,
+                                      viewmodel.currentlyPlayingTrack!.artist,
                                       style: const TextStyle(
                                         fontSize: 10,
                                         color: AppColors.text,
@@ -90,10 +103,8 @@ class NowPlayingTile extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: viewmodel.isPlaying
-                                ? viewmodel.stop
-                                : () {
-                                    viewmodel.stop();
-                                  },
+                                ? viewmodel.pause
+                                : viewmodel.resume,
                             icon: Icon(
                               viewmodel.isPlaying
                                   ? CupertinoIcons.pause_fill
@@ -123,9 +134,9 @@ class NowPlayingTile extends StatelessWidget {
                 ),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

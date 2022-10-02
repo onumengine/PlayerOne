@@ -34,7 +34,7 @@ class _NowPlayingControlPanelState extends State<NowPlayingControlPanel> {
           child: Column(
             children: [
               Text(
-                viewmodel.title,
+                viewmodel.currentlyPlayingTrack!.title,
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
@@ -44,7 +44,7 @@ class _NowPlayingControlPanelState extends State<NowPlayingControlPanel> {
               ),
               const SizedBox(height: 8),
               Text(
-                viewmodel.artist,
+                viewmodel.currentlyPlayingTrack!.artist,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -96,6 +96,10 @@ class _NowPlayingControlPanelState extends State<NowPlayingControlPanel> {
                       onPressed: viewmodel.isPlaying
                           ? viewmodel.pause()
                           : viewmodel.resume(),
+                      onLongPress: () {
+                        viewmodel.stop();
+                        viewmodel.setTrackIsLoaded(false);
+                      },
                       child: Icon(
                         viewmodel.isPlaying
                             ? CupertinoIcons.pause_fill

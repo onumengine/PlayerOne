@@ -7,9 +7,14 @@ import 'package:player_one/views/widgets/now_playing_tile.dart';
 import 'package:player_one/views/widgets/track_tile.dart';
 import 'package:provider/provider.dart';
 
-class TracksActivity extends StatelessWidget {
+class TracksActivity extends StatefulWidget {
   const TracksActivity({Key? key}) : super(key: key);
 
+  @override
+  State<TracksActivity> createState() => _TracksActivityState();
+}
+
+class _TracksActivityState extends State<TracksActivity> {
   @override
   Widget build(BuildContext context) {
     return Consumer<LibraryViewModel>(

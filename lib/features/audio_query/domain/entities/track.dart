@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class TrackEntity extends Equatable {
-  // TODO: Add fields 'duration' and 'filepath'
   final String title, artist, filePath, albumArtPath;
   final String duration;
 

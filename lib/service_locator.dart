@@ -10,6 +10,7 @@ import 'package:player_one/features/caching/data/repositories/cache_repo_impl.da
 import 'package:player_one/features/caching/domain/repositories/cache_repository.dart';
 import 'package:player_one/features/caching/domain/use_cases/cache.dart';
 import 'package:player_one/features/caching/domain/use_cases/fetch.dart';
+import 'package:player_one/features/caching/domain/use_cases/read_state.dart';
 import 'package:player_one/features/caching/domain/use_cases/save.dart';
 import 'package:player_one/features/caching/domain/use_cases/save_state.dart';
 import 'package:player_one/features/playback/data/data_sources/player.dart';
@@ -25,10 +26,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
-init() {
+init() async {
+  await initExternal();
   initCore();
   initFeatures();
-  initExternal();
 }
 
 initCore() {}
@@ -60,11 +61,17 @@ initFeatures() {
       repository: serviceLocator(),
     ),
   );
+  serviceLocator.registerLazySingleton<ReadState>(
+    () => ReadState(
+      repository: serviceLocator(),
+    ),
+  );
   serviceLocator.registerLazySingleton<Cache>(
     () => Cache(
       fetch: serviceLocator(),
       save: serviceLocator(),
       saveState: serviceLocator(),
+      readState: serviceLocator(),
     ),
   );
 
@@ -133,14 +140,16 @@ initFeatures() {
   );
 }
 
-initExternal() {
+initExternal() async {
   serviceLocator.registerLazySingleton<FlutterAudioQuery>(
     () => FlutterAudioQuery(),
   );
   serviceLocator.registerLazySingleton<AudioPlayer>(
     () => AudioPlayer(),
   );
-  serviceLocator.registerLazySingletonAsync<SharedPreferences>(
-    () => SharedPreferences.getInstance(),
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+  serviceLocator.registerLazySingleton<SharedPreferences>(
+    () => sharedPreferences,
   );
 }

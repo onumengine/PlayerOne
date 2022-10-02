@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:player_one/core/navigation/routenames.dart';
 import 'package:player_one/core/theming/colors.dart';
 import 'package:player_one/features/audio_query/domain/entities/track.dart';
@@ -21,14 +20,10 @@ class TrackTile extends StatelessWidget {
     double vw = MediaQuery.of(context).size.width;
     return ListTile(
       onTap: () async {
-        Provider.of<PlaybackViewModel>(context, listen: false)
-          ..play(track.filePath)
-          ..setIsPlaying(true);
+        Provider.of<PlaybackViewModel>(context, listen: false).play(track);
       },
       onLongPress: () async {
-        Provider.of<PlaybackViewModel>(context, listen: false)
-          ..stop()
-          ..setIsPlaying(false);
+        Provider.of<PlaybackViewModel>(context, listen: false).stop();
       },
       leading: track.albumArtPath == null
           ? Image.asset(

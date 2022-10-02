@@ -4,6 +4,7 @@ import 'package:player_one/core/navigation/router.dart';
 import 'package:player_one/core/theming/themes.dart';
 import 'package:player_one/features/audio_query/domain/use_cases/get_tracks.dart';
 import 'package:player_one/features/audio_query/presentation/library_vm.dart';
+import 'package:player_one/features/caching/domain/use_cases/cache.dart';
 import 'package:player_one/features/playback/domain/use_cases/playback.dart';
 import 'package:player_one/features/playback/presentation/playback_vm.dart';
 import 'package:player_one/service_locator.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: PlaybackViewModel(
             player: serviceLocator<Playback>(),
+            cache: serviceLocator<Cache>(),
           ),
         ),
         ChangeNotifierProvider.value(
